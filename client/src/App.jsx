@@ -40,7 +40,7 @@ function App() {
       setLoading(true)
 
       try{
-        const weatherRes = await fetch(`https://ai-integrated-weather-dashboard.onrender.com/api/weather/${location}`)
+        const weatherRes = await fetch(`https://weather-dashboard-by-irem.onrender.com/api/weather/${location}`)
         if(!weatherRes.ok) {
           setError("Can not find city, please refresh the page and try again.")
           return
