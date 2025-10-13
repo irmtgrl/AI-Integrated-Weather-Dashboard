@@ -47,6 +47,7 @@
         backdrop-filter: blur(24px);
         border-radius: 16px;
         padding: 1em 2em;
+        overflow-x: hidden;
     }
     .centered{
         display: flex;

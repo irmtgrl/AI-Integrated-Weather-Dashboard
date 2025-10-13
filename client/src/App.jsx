@@ -11,6 +11,7 @@ import { Widget } from './components/Widget.jsx'
 function App() {
   const [loading, setLoading] = useState(false)
   const [weatherData, setWeatherData] = useState(null)
+  const [error, setError] = useState(null)
 
   const inputRef = useRef(null)
   const loadingRef = useRef(null)
@@ -40,9 +41,15 @@ function App() {
 
       try{
         const weatherRes = await fetch(`https://ai-integrated-weather-dashboard.onrender.com/api/weather/${location}`)
+        if(!weatherRes.ok) {
+          setError("Can not find city, please refresh the page and try again.")
+          return
+        }
         const fetchedData = await weatherRes.json()
         setWeatherData(fetchedData)
+        setError(null)
       } catch (err) {
+        setError("AI request failed. Try again.")
         console.error("AI request failed:", err);
       } finally {
         setLoading(false)
@@ -78,7 +85,12 @@ function App() {
       </div>
 
       {weatherData && <main>
-        <div className="relative inline-grid grid-cols-5 grid-rows-3 2xl:w-[800px] 2xl:h-[400px] md:w-[600px] md:[300px] xs:w-[400] xs:h-[250] 2xl:gap-4 xl:gap-2 md:gap-2 sm:gap-2 xs:gap-2">
+        <div className="
+          relative inline-flex flex-col gap-2
+          md:grid md:grid-cols-5 md:grid-rows-3
+          2xl:w-[800px] 2xl:h-[400px] md:w-[600px] sm:w-[400px]
+          2xl:gap-4 xl:gap-2 md:gap-2
+        ">
           <Greeting 
             aiRecommendation={weatherData?.aiRecommendation ?? ""}
           /> 
@@ -112,6 +124,12 @@ function App() {
         onClick={ () => changeCity() }
       />}
       </main>}
+      
+      
+      {error && <div className="bento w-800px">
+        <h1>404</h1>
+        <p>Can not find city! Please refresh the page and try again.</p>
+      </div>}
     </>
   )
 }

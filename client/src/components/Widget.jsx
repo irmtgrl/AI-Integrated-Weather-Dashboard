@@ -1,6 +1,6 @@
 export function Widget({ temp, name, icon, onClick }) {
     return (
-        <div className="fixed top-4 right-4">
+        <div className="fixed top-4 right-4 opacity-0 md:opacity-100">
             <div className="bento w-full h-full flex justify-start items-center">
                 <img src={`https://openweathermap.org/img/wn/${ icon }.png`}/>
                 <h2 className="mr-6">{ name }</h2>
