@@ -42,14 +42,20 @@ function App() {
       try{
         const weatherRes = await fetch(`https://weather-dashboard-by-irem.onrender.com/api/weather/${location}`)
         if(!weatherRes.ok) {
-          setError("Can not find city, please refresh the page and try again.")
+          setError({
+            code: 404,
+            content: "Can not find city, please enter a valid city name and try again."
+          })
           return
         }
         const fetchedData = await weatherRes.json()
         setWeatherData(fetchedData)
         setError(null)
       } catch (err) {
-        setError("AI request failed. Try again.")
+        setError({
+            code: 500,
+            content: "AI request failed. Try again."
+        })
         console.error("AI request failed:", err);
       } finally {
         setLoading(false)
@@ -127,8 +133,8 @@ function App() {
       
       
       {error && <div className="bento w-800px">
-        <h1>404</h1>
-        <p>Can not find city! Please refresh the page and try again.</p>
+        <h1>{error.code}</h1>
+        <p>{error.content}</p>
       </div>}
     </>
   )
