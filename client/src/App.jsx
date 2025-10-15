@@ -69,7 +69,7 @@ function App() {
   return (
     <>
       {!weatherData && 
-      <header className="bg-beige/30 rounded-lg px-6 py-4">
+      <header className="bento rounded-lg px-6 py-4">
         <h1 className="max-w-md leading-12 mb-4 text-brunette">AI POWERED WEATHER REPORTS</h1>
         <p className="max-w-lg mb-4 text-brunette text-lg">This app makes weather reports more engaging through visuals and smart, weather-based recommendations.</p>
         <form onSubmit={getRecommendation}>
@@ -130,7 +130,6 @@ function App() {
         onClick={ () => changeCity() }
       />}
       </main>}
-      
       
       {error && <div className="bento w-800px">
         <h1>{error.code}</h1>
