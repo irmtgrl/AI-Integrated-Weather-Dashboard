@@ -40,7 +40,7 @@ function App() {
       setLoading(true)
 
       try{
-        const weatherRes = await fetch(`https://weather-dashboard-by-irem.onrender.com/api/weather/${location}`)
+        const weatherRes = await fetch(`https://weather-dashboard-server-nj91.onrender.com/api/weather/${location}`)
         if(!weatherRes.ok) {
           setError({
             code: 404,
